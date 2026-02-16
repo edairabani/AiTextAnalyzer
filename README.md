@@ -91,13 +91,6 @@ Running the Project
         Username: admin
         Password: password
 
-Screenshots
-
-(Add screenshots here of:)
-    - Login page
-    - RAG question
-    - Answer with citations
-
 
 Example Response
 {
