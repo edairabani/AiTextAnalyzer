@@ -129,8 +129,3 @@ Future Improvements
 Why This Matters
 This project shows how to build enterprise AI systems using modern .NET technologies — beyond simple AI demos.
 
-Nächster Schritt (wichtig)
-    - GitHub Repo erstellen
-    - README rein
-    - Screenshots hinzufügen
-    - Repo öffentlich machen
