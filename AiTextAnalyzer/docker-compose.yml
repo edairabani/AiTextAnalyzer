@@ -1,0 +1,38 @@
+services:
+  db:
+    image: ankane/pgvector
+    container_name: pgvector1
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: vector_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build: .
+    container_name: ai-api
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    environment:
+      # OpenAI
+      OpenAI__ApiKey: "${OPENAI_API_KEY}"
+
+      # JWT
+      Jwt__Key: "${JWT_KEY}"
+      Jwt__Issuer: "AiTextAnalyzer"
+      Jwt__Audience: "AiTextAnalyzerUsers"
+
+      # DB Connection
+      ConnectionStrings__VectorDb: "Host=db;Port=5432;Database=vector_db;Username=postgres;Password=postgres"
+
+      # RAG defaults
+      Rag__TopK: "8"
+      Rag__DistanceThreshold: "0.65"
+
+volumes:
+  pgdata:
